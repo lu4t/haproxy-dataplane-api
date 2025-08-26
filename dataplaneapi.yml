@@ -1,0 +1,29 @@
+config_version: 2
+name: d6b1116588bb
+dataplaneapi:
+  host: 0.0.0.0
+  port: 5555
+  advertised:
+    api_address: ""
+    api_port: 0
+  scheme:
+  - http
+  userlist:
+    userlist: controller
+    userlist_file: ""
+  resources:
+    dataplane_storage_dir: /usr/local/etc/haproxy/dp-storage
+  user:
+  - name: admin
+    insecure: true
+    password: adminpwd
+haproxy:
+  config_file: /usr/local/etc/haproxy/haproxy.cfg
+  haproxy_bin: /usr/local/sbin/haproxy
+  master_runtime: /var/run/haproxy-master.sock
+  master_worker_mode: true
+  reload:
+    reload_cmd: /usr/local/etc/haproxy/reload.sh
+    restart_cmd: /usr/local/etc/haproxy/reload.sh
+    reload_strategy: custom
+    validate_cmd: /usr/local/sbin/haproxy -c -q -f /usr/local/etc/haproxy/haproxy.cfg
